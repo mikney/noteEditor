@@ -1,0 +1,21 @@
+.home {
+  height: 100%;
+  overflow: auto;
+  //position: relative;
+  &__button{
+    &-input {
+      position: fixed;
+      bottom: 10px;
+      right: 100px;
+    }
+  }
+}
+
+.notes {
+  padding: 20px;
+  //display: grid;
+  //grid-template-columns: 1fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}

@@ -1,0 +1,109 @@
+.note-item {
+  $note-item: &;
+  width: 200px;
+  //position: absolute;
+  padding: 10px 15px;
+  height: max-content;
+  min-height: 150px;
+  //overflow: hidden;
+  //border: 3px solid #a1a1a1;
+  box-shadow: 2px 1px 2px 2px rgba(203, 203, 203, 0.93);
+
+  border-radius: 0 10px 10px 10px;
+  position: relative;
+  margin: 5px 10px;
+  &:hover {
+    #{$note-item}__edit {
+      opacity: 1;
+    }
+  }
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+
+  }
+  &__edit {
+    cursor: pointer;
+    opacity: 0;
+    transition: all .1s ease-out;
+    img {
+      width: 20px;
+
+    }
+  }
+  &__text {
+    margin-top: 10px;
+    //height: 100px;
+    width: 100%;
+    //min-height: 100px;
+    //max-height: 300px;
+    margin-bottom: 25px;
+    //height: 85px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 10;
+    -webkit-box-orient: vertical;
+    line-height: 1.3em;
+    max-height: 13.0em;
+    //&:after {
+    //  content: "";
+    //  position: absolute;
+    //  left: 0;
+    //  bottom: 25px;
+    //  width: 100%;
+    //  height: 40px;
+    //  background: linear-gradient(180deg, transparent, #c8ad90 50%);
+    //}
+  }
+  &__tags {
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+  }
+  &--modal {
+
+    &-wrapper {
+
+    }
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.45);
+    #{$note-item} {
+      z-index: 1000;
+      background-color: white;
+      position: relative;
+      min-height: 200px;
+      min-width: 600px;
+      padding: 20px 25px;
+      top: calc(50%);
+      left: calc(50%);
+      box-shadow: 2px 1px 7px 2px rgba(127, 127, 127, 0.93);
+      transform: translate3d(-50%, -50%, 0);
+      &__title {
+        font-size: 19px;
+      }
+      &__text {
+        font-size: 18px;
+      }
+      &__tags {
+        font-size: 17px;
+        display: flex;
+        bottom: 20px
+      }
+      &__close {
+        height: 22px;
+        width: 22px;
+        position: absolute;
+        bottom: 17px;
+        right: 22px;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import "NoteInput";
+@import "Home";
+@import "TagSelected";
+@import "NoteItem";
+@import "TagItem";
+
+html, #root, body {
+  margin: 0;
+  height: 100%;
+
+}
+.wrapper {
+  background-color: white;
+  height: 100%;
+  width: 950px;
+  margin: 0 auto;
+  font-size: 14px;
+}
+//* {
+//  box-sizing: border-box;
+//}
+input {
+  outline: none;
+}

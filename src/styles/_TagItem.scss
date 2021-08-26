@@ -1,0 +1,41 @@
+
+
+.tag__item {
+  font-weight: bold;
+  margin-left: 5px;
+  opacity: .6;
+  transition: opacity .15s ease-in-out;
+  cursor: pointer;
+  padding: 1px;
+  //&:hover {
+  //  opacity: 1;
+  //}
+  //&__item.selected {
+  //  opacity: 1;
+  //}
+  &--selected {
+    margin-right: 10px;
+    opacity: 1;
+    &:after {
+      //content: url("./~/assets/icon/close.ico");
+      //content: url("data:image/svg+xml; utf8, ");
+      //content: url("https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/OOjs_UI_icon_close.svg/480px-OOjs_UI_icon_close.svg.png");
+      //content: url("https://mozorg.cdn.mozilla.net/media/img/favicon.ico");
+      content: '\d7';
+      display: inline-block;
+      height: 5px;
+      width: 5px;
+
+      //background-color: black;
+      //position: absolute;
+      //right: 0;
+      margin-left: 3px;
+      transform: translateY(-30%);
+    }
+    //&:hover {
+    //  &:after {
+    //
+    //  }
+    //}
+  }
+}
