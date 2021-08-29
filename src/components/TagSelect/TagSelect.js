@@ -51,6 +51,8 @@ const TagSelect = () => {
           {/*)}*/}
       </div>
       <div className='tag-list'>
+
+        <div className='tag-list__title'>Теги:</div>
         {currentTags.length > 0 ? currentTags.map((tag, index) =>
           <TagItem fn={clickTagHandler} key={index} tag={tag} classnames={'selected'}/>
         )

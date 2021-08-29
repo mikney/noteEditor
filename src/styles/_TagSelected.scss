@@ -31,6 +31,10 @@
   }
 }
 .tag-list {
+  padding: 5px 15px 0;
   margin-left: 110px;
   display: flex;
+  &__title {
+    font-weight: bold;
+  }
 }

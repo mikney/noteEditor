@@ -74,7 +74,7 @@ const NoteInput = ({hide}) => {
         HtmlArr.push(changeNote.text.slice(lastIndex))
         divText.current.innerHTML = HtmlArr.join('')
       } else {
-        //  divText.current.innerText = changeNote.text
+         divText.current.innerText = changeNote.text
         //setAreaValue(changeNote.text)
       }
 
@@ -289,7 +289,7 @@ const NoteInput = ({hide}) => {
       <div className="note__input-title">
         <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Введите заголовок'/>
       </div>
-      {show ?
+      {/*{show ?*/}
         <>
           {/*<div className="note__input-text">*/}
           {/*  <textarea onChange={(event => textAreaHandler(event))} value={areaValue}  placeholder="Заметка..."  />*/}
@@ -298,32 +298,52 @@ const NoteInput = ({hide}) => {
           <div className='note__input-tags'>
             {tags.map((tag, index) => <TagItem tag={tag} key={index} />)}
           </div>
-          <button onClick={() => dispatch(addNote(title, areaValue, tags))}>Добавить</button>
-          <button onClick={() => hide(false)}>Отмена</button>
+          <button className='note__input-button' onClick={() => {
+            dispatch(addNote(title, areaValue, tags))
+            hide(false)
+            lastIndex = 0
+            counter = 0
+            counterArray = 1
+          }}>Добавить</button>
+          <button className='note__input-button cancel' onClick={() => {
+            hide(false)
+            lastIndex = 0
+            counter = 0
+            counterArray = 1
+          }}>Отмена</button>
         </>
-      : null}
+      {/*: null}*/}
     </div>
-        : <div onClick={() => setShow(true)}  ref={ref} className="note__input">
-          <div className="note__input-title">
-            <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Введите заголовок'/>
-          </div>
+      : <div onClick={() => setShow(true)}  ref={ref} className="note__input">
+        <div className="note__input-title">
+          <input onChange={(e) => setTitle(e.target.value)} value={title} type='text' placeholder='Введите заголовок'/>
+        </div>
 
-            <div style={show ? {display: 'block'} : {display: 'none'}}>
-              {/*<div className="note__input-text">*/}
-              {/*  <textarea onChange={(event => textAreaHandler(event))} value={areaValue}  placeholder="Заметка..."  />*/}
-              {/*</div>*/}
-              <div ref={divText} className="note__input-text"  onInput={(event => textAreaHandler(event))} contentEditable='true' placeholder="Заметка..." />
-              <div className='note__input-tags'>
-                {tags.map((tag, index) => <TagItem tag={tag} key={index} />)}
-              </div>
-              <button onClick={() => dispatch(changeN(changeNote.id, title, areaValue, tags))}>Изменить</button>
-              <button onClick={() => {
-                hide(false)
-                dispatch(changedNote())
-                setTitle('')
-                setAreaValue('')
-              }}>Отмена</button>
+          <div style={show ? {display: 'block'} : {display: 'none'}}>
+            {/*<div className="note__input-text">*/}
+            {/*  <textarea onChange={(event => textAreaHandler(event))} value={areaValue}  placeholder="Заметка..."  />*/}
+            {/*</div>*/}
+            <div ref={divText} className="note__input-text"  onInput={(event => textAreaHandler(event))} contentEditable='true' placeholder="Заметка..." />
+            <div className='note__input-tags'>
+              {tags.map((tag, index) => <TagItem tag={tag} key={index} />)}
             </div>
+            <button className='note__input-button' onClick={() => {
+              dispatch(changeN(changeNote.id, title, areaValue, tags))
+              hide(false)
+              lastIndex = 0
+              counter = 0
+              counterArray = 1
+            }}>Изменить</button>
+            <button className='note__input-button' onClick={() => {
+              hide(false)
+              dispatch(changedNote())
+              setTitle('')
+              setAreaValue('')
+              lastIndex = 0
+              counter = 0
+              counterArray = 1
+            }}>Отмена</button>
+          </div>
 
 
         {/*{show ?*/}

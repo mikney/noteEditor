@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import TagItem from "../TagSelect/TagItem/TagItem";
 import edit_icon from '../../assets/icon/edit_icon.svg'
 import {useDispatch} from "react-redux";
-import {changeNote, deleteNote} from "../../redux/actions/notes";
+import {changeNote, deleteNote, setCurrentTag} from "../../redux/actions/notes";
 import closeIcon from "../../assets/icon/close.ico"
 
 const NoteItem = ({title, text, tags, id, fn}) => {
@@ -48,7 +48,7 @@ const NoteItem = ({title, text, tags, id, fn}) => {
       </div>
       <div className="note-item__tags">
         {tags.map((tag, index) =>
-          <TagItem key={index} tag={tag} />
+          <TagItem fn={() => dispatch(setCurrentTag(tag))} key={index} tag={tag} />
         )}
       </div>
     </div>
@@ -56,7 +56,10 @@ const NoteItem = ({title, text, tags, id, fn}) => {
         <div className="note-item">
           <div spellCheck={true} contentEditable={true} className="note-item__title">
             {title}
-            <div onClick={() => dispatch(changeNote(title,text, id, tags))} className='note-item__edit'>
+            <div onClick={() => {
+              dispatch(changeNote(title,text, id, tags))
+              setShowModal(false)
+            }} className='note-item__edit'>
               <img src={edit_icon} alt=""/>
             </div>
           </div>

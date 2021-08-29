@@ -54,7 +54,7 @@ const Home = () => {
       <div onClick={() => setShow(true)} className='home__button-input'>
         <img src="https://img.icons8.com/ios/50/000000/add--v1.png"/>
       </div>
-      {(show || Object.keys({...changeNote}).length) && <NoteInput hide={setShow} state={state}/>}
+      {(show || !!Object.keys({...changeNote}).length) && <NoteInput hide={setShow} state={state}/>}
       <TagSelect  />
       <div className='notes'>
         {currentTags.length ? notesFiltered.map((obj, index) =>
