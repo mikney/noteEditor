@@ -2,6 +2,7 @@ import React, {createRef, useEffect, useRef, useState} from 'react';
 import TagItem from "../TagSelect/TagItem/TagItem";
 import {addNote, changeN, changeNote as changedNote} from "../../redux/actions/notes";
 import {useDispatch, useSelector} from "react-redux";
+import ContentEditable from "react-contenteditable";
 
 let lastIndex = 0
 let counter = 0
@@ -49,7 +50,7 @@ const NoteInput = ({hide}) => {
     // })
     //setAreaValue(divText.current.textContent)
   }, [])//divText.current.textContent])
-
+  const text = useRef('');
   const [dText, setDtext] = useState('')
   useEffect(() => {
     if (Object.keys(changeNote).length) {
@@ -88,53 +89,24 @@ const NoteInput = ({hide}) => {
   // let counterArray = 1
 
 
-  function textAreaHandler() {
-      const html = divText.current.innerHTML
-      const text = divText.current.textContent
-      const target = divText.current
-      // const position = target.selectionStart
-      //divText.current.outerHTML = inputChangeTag(text)
-      divText.current.innerHTML = inputChangeTag(text)
-      const afterText = divText.current.textContent
-    //   var setpos = document.createRange();
-    // var set = window.getSelection()
+  function textAreaHandler(event) {
+      // const html = divText.current.innerHTML
+      // const text = divText.current.textContent
+      // const target = divText.current
+    const value = event.target.value
+    if (value === '#') {
+      document.execCommand('bold')
+    }
+    console.log(window.getSelection())
+    // if ((value[value.length -1] === ' ')) {
+    //   setDtext(event.target.value)
+    // } else {
+    //   setDtext(inputChangeTag(event.target.value))
+    // }
+    // console.log(inputChangeTag(event.target.value))
+    // //text.current = inputChangeTag(event.target.value)
+    // console.log(value[value.length -1] === ' ')
 
-
-
-    var tag = target
-
-    // Creates range object
-    var setpos = document.createRange();
-
-    // Creates object for selection
-    var set = window.getSelection();
-    setpos.selectNode(tag.childNodes[0])
-    const range = new Range();
-    // target.selectionEnd = text.length - 1;
-    // Set start position of range
-    // console.log(setpos.endOffset)
-    setpos.setEnd(tag.childNodes[0], 0)
-    setpos.setStart(tag.childNodes[0], afterText.length );
-    console.log(setpos.collapsed)
-    // Collapse range within its boundary points
-    // Returns boolean
-    console.log(window.getSelection().anchorNode);
-
-    //setpos.collapse(true);
-
-    // Remove all ranges set
-    set.removeAllRanges();
-
-    // Add range with respect to range object.
-    set.addRange(setpos);
-
-    // Set cursor on focus
-    tag.focus();
-
-      // setDtext(inputChangeTag(text))
-      // target.selectionEnd = text.length - 1;
-      // target.focus()
-    console.log(divText)
   }
 
   // function textAreaHandler(event) {
@@ -203,7 +175,15 @@ const NoteInput = ({hide}) => {
           {/*<div className="note__input-text">*/}
           {/*  <textarea onChange={(event => textAreaHandler(event))} value={areaValue}  placeholder="Заметка..."  />*/}
           {/*</div>*/}
-          <div autofocus={true} ref={divText} onInput={(event => textAreaHandler(event))} className="note__input-text"  contentEditable='true' placeholder="Заметка..." >{dText}</div>
+          {/*<div autofocus={true} ref={divText} onInput={(event => textAreaHandler(event))} className="note__input-text"  contentEditable='true' placeholder="Заметка..." >{dText}</div>*/}
+          <ContentEditable
+            className="note__input-text"
+            tagName="pre"
+            html={dText} // innerHTML of the editable div
+            // disabled={!this.state.editable} // use true to disable edition
+            onChange={textAreaHandler} // handle innerHTML change
+            // onBlur={() => console.log('HI')}
+          />
           <div className='note__input-tags'>
             {tags.map((tag, index) => <TagItem tag={tag} key={index} />)}
           </div>
