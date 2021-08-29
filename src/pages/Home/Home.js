@@ -15,9 +15,10 @@ const Home = () => {
 
 
   const dispatch = useDispatch()
-  const {notes, currentTags} = useSelector((state) => ({
+  const {notes, currentTags, changeNote} = useSelector((state) => ({
     notes: state.notes.notes,
-    currentTags: state.notes.currentTags
+    currentTags: state.notes.currentTags,
+    changeNote: state.notes.changeNote
   }))
   useEffect( () => {
     dispatch(resolveNotes(notesJson))
@@ -41,19 +42,24 @@ const Home = () => {
    // return note.tags.includes(...currentTags)
     //return true
   })
+  document.execCommand('bold')
 
+  const [show, setShow] = useState(false)
 
-
+  console.log(show, 'HOme show')
+  console.log(Object.keys(changeNote).length, 'chanheNote length')
+  console.log({...changeNote})
   return (
     <div className='home'>
-      <NoteInput state={state}/>
-      <div className='home__button-input'>
+      <div onClick={() => setShow(true)} className='home__button-input'>
         <img src="https://img.icons8.com/ios/50/000000/add--v1.png"/>
       </div>
+      {(show || Object.keys({...changeNote}).length) && <NoteInput hide={setShow} state={state}/>}
       <TagSelect  />
       <div className='notes'>
         {currentTags.length ? notesFiltered.map((obj, index) =>
           <NoteItem
+            key={index + obj.id}
             id={obj.id}
             title={obj.title}
             text={obj.text}
@@ -73,6 +79,7 @@ const Home = () => {
           )
         }
       </div>
+      <div contentEditable={true} style={{height: '100px', width: '400px',}} onClick={() => document.execCommand('bold') } />
     </div>
   );
 };

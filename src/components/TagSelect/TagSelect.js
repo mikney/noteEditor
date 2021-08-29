@@ -43,16 +43,25 @@ const TagSelect = () => {
 
   return (
     <>
-    <div className='tag-list' style={{display: 'flex', }}>
-      {tagsList && tagsList.map((tag, index) =>
-        <TagItem key={index} tag={tag} classnames={''} fn={clickTagHandler}/>
-      )}
-    </div>
+
       <div className='tag-selected'>
-        <input onKeyPress={e => {onKeyHandler(e)}} onChange={(e) => setInputTag(e.target.value)} value={inputTag} placeholder='Поиск по тегу' className='tag-selected__input' />
-        {currentTags.length > 0 && currentTags.map((tag, index) =>
+          <input onKeyPress={e => {onKeyHandler(e)}} onChange={(e) => setInputTag(e.target.value)} value={inputTag} placeholder='Поиск по тегу' className='tag-selected__input' />
+          {/*{currentTags.length > 0 && currentTags.map((tag, index) =>*/}
+          {/*  <TagItem fn={clickTagHandler} key={index} tag={tag} classnames={'selected'}/>*/}
+          {/*)}*/}
+      </div>
+      <div className='tag-list'>
+        {currentTags.length > 0 ? currentTags.map((tag, index) =>
           <TagItem fn={clickTagHandler} key={index} tag={tag} classnames={'selected'}/>
-        )}
+        )
+        : tagsList && tagsList.map((tag, index) =>
+          <TagItem key={index} tag={tag} classnames={''} fn={clickTagHandler}/>
+        )
+        }
+        {/*<div className='tag-list' style={{display: 'flex', }}>*/}
+        {/*  {tagsList && tagsList.map((tag, index) =>*/}
+        {/*    <TagItem key={index} tag={tag} classnames={''} fn={clickTagHandler}/>*/}
+        {/*  )}*/}
       </div>
     </>
   );

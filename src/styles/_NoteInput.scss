@@ -4,8 +4,17 @@
     padding: 10px;
     box-shadow: 2px 1px 5px 2px rgba(127, 127, 127, 0.93);
     border-radius: 8px;
+    width: 600px;
+    background-color: white;
     max-width: 600px;
     margin: 10px  auto 0;
+    position: fixed;
+    bottom: 20px;
+    right: calc(50%);
+    //top: calc(50%);
+    //left: calc(50%);
+    transform: translateX(50%);
+    z-index: 1000;
 
     &-title {
       input {

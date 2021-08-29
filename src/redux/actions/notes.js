@@ -41,6 +41,11 @@ export const resolveTags = (notes) => {
   }
 }
 
+export const deleteNote = (id) => ({
+  type: 'DELETENOTE',
+  payload: id
+})
+
 
 
 

@@ -19,6 +19,9 @@ html, #root, body {
 //* {
 //  box-sizing: border-box;
 //}
+* {
+  outline: none;
+}
 input {
   outline: none;
 }

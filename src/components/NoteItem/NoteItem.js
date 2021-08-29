@@ -1,22 +1,45 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import TagItem from "../TagSelect/TagItem/TagItem";
 import edit_icon from '../../assets/icon/edit_icon.svg'
 import {useDispatch} from "react-redux";
-import {changeNote} from "../../redux/actions/notes";
+import {changeNote, deleteNote} from "../../redux/actions/notes";
 import closeIcon from "../../assets/icon/close.ico"
 
 const NoteItem = ({title, text, tags, id, fn}) => {
   const dispatch = useDispatch()
   const [showModal, setShowModal] = useState(false)
+  const [showMenu, setShowMenu] = useState(false)
+  const menuRef = useRef(null)
+
+
+  useEffect(() => {
+    document.body.addEventListener('click', (event) => {
+      // const path = event.path || (event.composedPath && event.composedPath());
+      if (!event.path.includes(menuRef.current)) {
+        setShowMenu(false)
+      }
+    })
+  }, [])
 
 
   return (
     <>
-    <div onClick={() => setShowModal(true)} className='note-item'>
-      <div className="note-item__title">
+    <div  className='note-item'>
+      <div onClick={() => setShowModal(true)} className="note-item__title">
         {title}
-        <div onClick={() => dispatch(changeNote(title,text, id, tags))} className='note-item__edit'>
-          <img src={edit_icon} alt=""/>
+
+      </div>
+      <div ref={menuRef} style={showMenu ? {opacity: 1} : null} className='note-item__edit'>
+        <img style={{}} onClick={() => setShowMenu(!showMenu)} alt={'Меню'}  src="https://img.icons8.com/material-outlined/24/000000/menu-2.png"/>
+         <div style={showMenu ? {display: 'block'} : {display: 'none'}}  className='note-item__menu'>
+          <li onClick={() => {
+            dispatch(changeNote(title, text, id, tags))
+            setShowMenu(false)
+          }} > <img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png"/>Редактировать</li>
+          <li onClick={() => {
+            dispatch(deleteNote(id))
+            setShowMenu(false)
+          }}  > <img src={edit_icon} />Удалить</li>
         </div>
       </div>
       <hr />
@@ -31,14 +54,14 @@ const NoteItem = ({title, text, tags, id, fn}) => {
     </div>
       {showModal ? <div className="note-item--modal">
         <div className="note-item">
-          <div className="note-item__title">
+          <div spellCheck={true} contentEditable={true} className="note-item__title">
             {title}
             <div onClick={() => dispatch(changeNote(title,text, id, tags))} className='note-item__edit'>
               <img src={edit_icon} alt=""/>
             </div>
           </div>
           <hr />
-          <div className="note-item__text">
+          <div spellCheck={true} contentEditable={true} className="note-item__text">
             {text}
           </div>
           <div className="note-item__tags">

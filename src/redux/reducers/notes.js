@@ -24,10 +24,13 @@ export const notesReducer = (state = initialState, action) => {
       ...state, notes: [...state.notes, action.payload]
     }
     case "CHANGENOTE": return {
-      ...state, changeNote: action.payload
+      ...state, changeNote: action.payload.title ? {...action.payload} : {}
     }
     case "TAGSLIST": return {
       ...state, tagsList: action.payload
+    }
+    case "DELETENOTE": return {
+      ...state, notes: [...state.notes.filter(note => note.id !== action.payload)]
     }
     default: return  state
   }

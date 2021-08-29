@@ -12,27 +12,67 @@
   border-radius: 0 10px 10px 10px;
   position: relative;
   margin: 5px 10px;
-  &:hover {
-    #{$note-item}__edit {
-      opacity: 1;
+
+  &__menu {
+    position: absolute;
+    top:-50px;
+    left: 13px;
+
+    //background-color: #fdfdfd;
+    z-index: 900;
+    height: max-content;
+    width: 130px;
+    background-color: #d4d4d4;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px 3px #c7c7c7;
+
+    li {
+      text-decoration: none ;
+      text-align: center;
+      list-style-type: none;
+      padding: 3px 5px;
+      display: flex;
+      justify-content: left;
+      align-items: center;
+      img {
+        margin-right: 8px;
+      }
+      &:hover {
+        background-color: #a1a1a1;
+      }
+
     }
   }
-  &__title {
-    font-size: 16px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
 
-  }
   &__edit {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
     cursor: pointer;
     opacity: 0;
     transition: all .1s ease-out;
     img {
       width: 20px;
-
     }
   }
+
+
+  &:hover {
+    #{$note-item}__edit {
+      opacity: 1;
+    }
+  }
+
+
+  &__title {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+
+  }
+
   &__text {
     margin-top: 10px;
     //height: 100px;
@@ -96,11 +136,18 @@
         display: flex;
         bottom: 20px
       }
+      &__edit {
+        opacity: 1;
+        img {
+          width: 25px;
+        }
+        right: 20px;
+      }
       &__close {
         height: 22px;
         width: 22px;
         position: absolute;
-        bottom: 17px;
+        top: 17px;
         right: 22px;
         cursor: pointer;
       }
