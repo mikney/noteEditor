@@ -79,7 +79,7 @@ const Home = () => {
           )
         }
       </div>
-      <div contentEditable={true} style={{height: '100px', width: '400px',}} onClick={() => document.execCommand('bold') } />
+      <input type="text" value="&lt;b&gt;Some text&lt;b/&gt;"/>
     </div>
   );
 };
