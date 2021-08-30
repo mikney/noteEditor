@@ -10,6 +10,7 @@ const NoteItem = ({title, text, tags, id, fn}) => {
   const [showModal, setShowModal] = useState(false)
   const [showMenu, setShowMenu] = useState(false)
   const menuRef = useRef(null)
+  const modalItemRef = useRef(null)
 
 
   useEffect(() => {
@@ -18,8 +19,12 @@ const NoteItem = ({title, text, tags, id, fn}) => {
       if (!event.path.includes(menuRef.current)) {
         setShowMenu(false)
       }
+      if (showModal) {
+        event.target === modalItemRef.current && setShowModal(false)
+      }
+
     })
-  }, [])
+  }, [showModal])
 
 
   return (
@@ -35,11 +40,11 @@ const NoteItem = ({title, text, tags, id, fn}) => {
           <li onClick={() => {
             dispatch(changeNote(title, text, id, tags))
             setShowMenu(false)
-          }} > <img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png"/>Редактировать</li>
+          }} > <img src={edit_icon} />Редактировать</li>
           <li onClick={() => {
             dispatch(deleteNote(id))
             setShowMenu(false)
-          }}  > <img src={edit_icon} />Удалить</li>
+          }}  > <img src="https://img.icons8.com/material-outlined/24/000000/delete-trash.png" />Удалить</li>
         </div>
       </div>
       <hr />
@@ -52,9 +57,9 @@ const NoteItem = ({title, text, tags, id, fn}) => {
         )}
       </div>
     </div>
-      {showModal ? <div className="note-item--modal">
+      {showModal ? <div ref={modalItemRef} className="note-item--modal">
         <div className="note-item">
-          <div spellCheck={true} contentEditable={true} className="note-item__title">
+          <div spellCheck={true} className="note-item__title">
             {title}
             <div onClick={() => {
               dispatch(changeNote(title,text, id, tags))
@@ -64,7 +69,7 @@ const NoteItem = ({title, text, tags, id, fn}) => {
             </div>
           </div>
           <hr />
-          <div spellCheck={true} contentEditable={true} className="note-item__text">
+          <div spellCheck={true} className="note-item__text">
             {text}
           </div>
           <div className="note-item__tags">

@@ -79,7 +79,6 @@ const Home = () => {
           )
         }
       </div>
-      <input type="text" value="&lt;b&gt;Some text&lt;b/&gt;"/>
     </div>
   );
 };

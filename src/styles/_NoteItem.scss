@@ -70,6 +70,12 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    margin: 0;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 42px;
 
   }
 
@@ -127,6 +133,8 @@
       transform: translate3d(-50%, -50%, 0);
       &__title {
         font-size: 19px;
+        display: block;
+        height: auto;
       }
       &__text {
         font-size: 18px;

@@ -16,6 +16,12 @@
   &:hover {
     opacity: 1;
   }
+  &--input {
+    cursor: default;
+    &:hover {
+      opacity: .6;
+    }
+  }
   &--selected {
     margin-right: 10px;
     opacity: 1;
