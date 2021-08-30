@@ -4,7 +4,7 @@
     padding: 15px;
     box-shadow: 2px 1px 5px 2px rgba(127, 127, 127, 0.93);
     border-radius: 8px;
-    width: 600px;
+    //width: 600px;
     background-color: white;
     max-width: 600px;
     margin: 10px  auto 0;
@@ -100,5 +100,24 @@
       //  background-color: #767676;
       //}
     }
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .note {
+    &__input {
+
+      width: 85%;
+      height: 12rem;
+      //margin: 0 auto;
+      bottom: 5px;
+      &-text {
+        height: 7rem;
+
+      }
+    }
+
   }
 }

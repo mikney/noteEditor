@@ -108,6 +108,7 @@
     display: flex;
     bottom: 10px;
   }
+
   &--modal {
 
     &-wrapper {
@@ -158,6 +159,52 @@
         top: 17px;
         right: 22px;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .note-item {
+    $note-item: &;
+    width: max-content;
+    height: max-content;
+
+    &__menu {
+      top: -58px;
+      left: -115px;
+    }
+
+
+    &--modal {
+      flex-wrap: wrap;
+      #{$note-item} {
+        max-width: 90%;
+        min-width: 100px;
+        //height: max-content;
+        padding: 10px 13px;
+        margin: 0;
+        &__title {
+          width: 90%;
+        }
+        &__text {
+          //margin-bottom: 20px;
+          overflow: auto;
+          display: block;
+          -webkit-line-clamp: 0;
+          -webkit-box-orient: horizontal;
+          line-height: 1.3em;
+          max-height: 100%;
+          height: 100%;
+          margin-bottom: 30px;
+
+
+        }
+        &__tags {
+          font-size: 17px;
+          display: flex;
+          bottom: 15px
+        }
       }
     }
   }
